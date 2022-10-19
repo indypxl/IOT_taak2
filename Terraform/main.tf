@@ -2,22 +2,26 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "2.22.0"
+      version = ">= 2.13.0"
     }
   }
 }
 
 provider "docker" {
-  host = "unix:///var/run/docker.sock"
+  host    = "npipe:////.//pipe//docker_engine"
 }
 
-# Pulls the image
-resource "docker_image" "ubuntu" {
-  name = "ubuntu:latest"
+resource "docker_image" "nginx" {
+  name         = "ghcr.io/indypxl/IOT_taak2/iottask2_docker_image:sha-e84ca8c"
+  keep_locally = false
 }
 
-# Create a container
-resource "docker_container" "foo" {
-  image = docker_image.ubuntu.image_id
-  name  = "foo"
+resource "docker_container" "nginx" {
+  image = docker_image.nginx.latest
+  name  = "iot_taak_2"
+  must_run = false
+  ports {
+    internal = 80
+    external = 8000
+  }
 }
