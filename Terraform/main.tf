@@ -18,7 +18,7 @@ resource "docker_image" "nginx" {
 
 resource "docker_container" "nginx" {
   image = docker_image.nginx.latest
-  name  = "iot_taak_2"
+  name  = "iot_taak2"
   must_run = false
   ports {
     internal = 80
