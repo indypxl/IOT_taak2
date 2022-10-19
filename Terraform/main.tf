@@ -12,7 +12,7 @@ provider "docker" {
 }
 
 resource "docker_image" "nginx" {
-  name         = "ghcr.io/indypxl/IOT_taak2/iottask2_docker_image:sha-e84ca8c"
+  name         = "ghcr.io/indypxl/iot-taak2/hallo:sha-f391f81"
   keep_locally = false
 }
 
